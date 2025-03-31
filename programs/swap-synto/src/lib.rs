@@ -10,7 +10,7 @@ pub use error::ErrorCode;
 pub use instructions::*;
 pub use state::*;
 
-declare_id!("e7cjA4WaVmLBPEfTqxPDocLowPjhTmg1PLKSMwLqNKx");
+declare_id!("BmWj213TczhVvEf9EndPP4mxNVRXDUAhfufT15wJAKpW");
 
 #[program]
 pub mod swap_synto {
