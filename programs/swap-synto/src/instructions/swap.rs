@@ -5,8 +5,10 @@ use anchor_spl::token::{self, Mint, Token, TokenAccount, Transfer};
 
 #[derive(Accounts)]
 pub struct Swap<'info> {
-    #[account(mut, seeds=[b"escrow", signer.key().as_ref()], bump = escrow.bump)]
+    #[account(mut, seeds=[b"escrow", owner.key().as_ref()], bump = escrow.bump)]
     pub escrow: Account<'info, Escrow>,
+    #[account(mut)]
+    pub owner: SystemAccount<'info>,
     #[account(
         mut,
         associated_token::mint = token_mint,
@@ -31,7 +33,7 @@ impl<'info> Swap<'info> {
     pub fn swap(&mut self, payer_amount: u64) -> Result<()> {
         let seeds = &[
             b"escrow",
-            self.signer.to_account_info().key.as_ref(),
+            self.owner.to_account_info().key.as_ref(),
             &[self.escrow.bump],
         ];
 

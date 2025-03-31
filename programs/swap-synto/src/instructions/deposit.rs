@@ -5,7 +5,7 @@ use anchor_spl::token::{self, Mint, Token, TokenAccount, Transfer};
 
 #[derive(Accounts)]
 pub struct Deposit<'info> {
-    #[account(mut)]
+    #[account(mut, seeds=[b"escrow", signer.key().as_ref()], bump = escrow.bump)]
     pub escrow: Account<'info, Escrow>,
     #[account(
         mut,
