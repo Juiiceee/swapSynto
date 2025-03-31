@@ -6,6 +6,7 @@ pub mod state;
 use anchor_lang::prelude::*;
 
 pub use constants::*;
+pub use error::ErrorCode;
 pub use instructions::*;
 pub use state::*;
 
@@ -25,5 +26,9 @@ pub mod swap_synto {
 
     pub fn swap(ctx: Context<Swap>, payer_amount: u64) -> Result<()> {
         ctx.accounts.swap(payer_amount)
+    }
+
+    pub fn withdraw(ctx: Context<Withdraw>) -> Result<()> {
+        ctx.accounts.withdraw()
     }
 }
